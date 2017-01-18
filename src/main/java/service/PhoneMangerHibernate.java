@@ -121,20 +121,9 @@ public class PhoneMangerHibernate implements IPhoneManager
 
 	public void disposePart(Phone phone, Part part) 
 	{
-		phone = (Phone) sessionFactory.getCurrentSession().get(Phone.class,phone.getId());
-		part = (Part) sessionFactory.getCurrentSession().get(Part.class,part.getId());
-
-		Part toRemove = null;
-		for (Part _part : phone.getParts())
-		{
-			if (_part.getId() == part.getId()) 
-			{
-				toRemove = _part;
-				break;
-			}
-		}
-		if (toRemove != null)
-			phone.getParts().remove(toRemove);
+		Part _part = (Part) sessionFactory.getCurrentSession().get(Part.class,part.getId());
+		phone.getParts().remove(part);
+		sessionFactory.getCurrentSession().delete(_part);
 	}
 
 	public Part findPartById(long id) 

@@ -101,7 +101,6 @@ public class PhoneManagerTest
 	@Test
 	public void deletePhone() 
 	{		
-		Phone phone = (Phone)phoneManager.getPhoneByModel(MODEL_1).get(0);
 		Phone _phone = new Phone();
 		_phone.setModel(NEWMODEL_1);
 		_phone.setPrice(NEWPRICE_1);
@@ -110,6 +109,8 @@ public class PhoneManagerTest
 
 		phoneManager.addPhone(_phone);
 		int count = phoneManager.getAllPhones().size();
+		
+		Phone phone = (Phone)phoneManager.getPhoneByModel(MODEL_1).get(0);
 		phoneManager.deletePhone(phone);
 		Phone __phone = (Phone)phoneManager.getPhoneByModel(NEWMODEL_1).get(0);		
 		
@@ -161,7 +162,7 @@ public class PhoneManagerTest
 	@Test
 	public void addPart() 
 	{				
-		Phone phone = (Phone)phoneManager.getPhoneByModel(NEWMODEL_1).get(0);
+		Phone phone = phoneManager.getAllPhones().get(0);
 		
 		assertEquals(NAME_1, phone.getParts().get(0).getName());
 		assertEquals(PRICE_2, phone.getParts().get(0).getPrice(), 0.01);
@@ -189,20 +190,20 @@ public class PhoneManagerTest
 	
 	
 	@Test
-	public void removePart() 
+	public void disposePart() 
 	{
-		int index = phoneManager.getPhoneByModel(MODEL_1).size();
-		Phone phone = (Phone)phoneManager.getPhoneByModel(MODEL_1).get(index - 1);
-		Part part = new Part();
-		part.setName(NAME_2);
-		part.setPrice(PRICE_2);
-		part.setPhone(phone);
+		Phone phone = phoneManager.getAllPhones().get(0);
+		Part part = phone.getParts().get(0);
+		Part _part = new Part();
+		_part.setName(NAME_2);
+		_part.setPrice(PRICE_3);
+		_part.setPhone(phone);
 		
-		phoneManager.addNewPart(part);				
+		phoneManager.addNewPart(_part);				
 		phoneManager.disposePart(phone, part);
 		
-		assertEquals(NAME_1, phone.getParts().get(0).getName());
-		assertEquals(PRICE_2, phone.getParts().get(0).getPrice(), 0.01);
+		assertEquals(NAME_2, phone.getParts().get(0).getName());
+		assertEquals(PRICE_3, phone.getParts().get(0).getPrice(), 0.01);
 				
 	}
 	

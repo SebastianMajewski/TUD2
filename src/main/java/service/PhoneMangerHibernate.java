@@ -1,4 +1,4 @@
-package com.example.shdemo.service;
+package service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.shdemo.domain.Phone;
-import com.example.shdemo.domain.Part;
+import domain.Phone;
+import domain.Part;
 
 @Component
 @Transactional

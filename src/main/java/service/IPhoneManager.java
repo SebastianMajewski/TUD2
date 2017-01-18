@@ -1,9 +1,9 @@
-package com.example.shdemo.service;
+package service;
 
 import java.util.List;
 
-import com.example.shdemo.domain.Part;
-import com.example.shdemo.domain.Phone;
+import domain.Part;
+import domain.Phone;
 
 public interface IPhoneManager 
 {
